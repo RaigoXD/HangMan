@@ -1,1 +1,6 @@
+
+#exclude the folder venv becouse is the configurations for the virtual envieronment
 venv
+
+#ignore the python cache 
+__pycache__
