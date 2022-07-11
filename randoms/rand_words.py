@@ -2,13 +2,18 @@
 Module for generate a random word
 """
 import random
-import requests
-import local_data
+import json as js # using for read the local data base
+import traceback# Borrar
+import requests # using for read the random words from api
 
 class Words:
     """
-    Class for generate a random word using or local data
+    Class for generate a random word using local data
     or API for random words
+
+    lang: languajes for random word
+
+    source: where the program get the randoms words from local data or from api
     """
     language = str
     source = str
@@ -25,25 +30,32 @@ class Words:
         return a random word with context gave by category
         """
         if self.source == "local":
-            return self.get_word_local(category)
+            return self.__get_word_local(category)
         else:
-            return self.get_word_api(category)
+            return self.__get_word_api(category)
 
 
-    def get_word_local(self, category) -> str:
+    def __get_word_local(self, category) -> str:
         """
         return a random word with context by a category using the local data
         base
         """
         print("Take from local")
-        words = local_data.DATA[self.language][category]
-        print(f"palabras para animales {words}")
-        rand_index = random.randint(0,len(words)-1)
-        word = words[rand_index]
+        word = str
+        try:
+            with open("local_data.json", "r", encoding="utf-8") as data_base:
+                data = js.load(data_base)
+                words = data[self.language][category]
+                print(f"palabras para animales {words}")
+                rand_index = random.randint(0,len(words)-1)
+                word = words[rand_index]
+        except (KeyError, ValueError,FileNotFoundError, IndexError):
+            print("Error: Something was wrong in import the data base ")
+            traceback.print_exc() # Borrar
         return word
 
 
-    def get_word_api(self, category) -> str:
+    def __get_word_api(self, category) -> str:
         """
         return a random word with context gave by category using the
         api for random words
@@ -58,12 +70,7 @@ class Words:
                 body = response.json()['body']
                 word = body['name']
                 print(body)
-            except:
+            except KeyError:
                 print(f"Error: Request fail {status_get}")
-        
+                traceback.print_exc()
         return word
-
-
-
-sisa = Words("sp", "api")
-print(sisa.get_word("animales"))
