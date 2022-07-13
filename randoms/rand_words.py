@@ -2,18 +2,18 @@
 Module for generate a random word
 """
 import random
-import json as js # using for read the local data base
+import json as js # using to read the local data base
 import traceback# Borrar
-import requests # using for read the random words from api
+import requests # using to read the random words from api
 
 class Words:
     """
-    Class for generate a random word using local data
+    Class to generate a random word using local data
     or API for random words
 
-    lang: languajes for random word
+    lang: language used for random word
 
-    source: where the program get the randoms words from local data or from api
+    source: from where the program gets the random words (Local, API)
     """
     language = str
     source = str
@@ -25,9 +25,10 @@ class Words:
         self.language = lang
         self.source = source
 
+
     def get_word(self, category:str) -> str:
         """
-        return a random word with context gave by category
+        return a random word with context gave by a category
         """
         if self.source == "local":
             return self.__get_word_local(category)
@@ -40,7 +41,7 @@ class Words:
         return a random word with context by a category using the local data
         base
         """
-        print("Take from local")
+        print("Take from local") # Borrar
         word = str
         try:
             with open("local_data.json", "r", encoding="utf-8") as data_base:
@@ -57,10 +58,10 @@ class Words:
 
     def __get_word_api(self, category) -> str:
         """
-        return a random word with context gave by category using the
-        api for random words
+        return a random word with context gave by a category using the
+        API for random words
         """
-        print("Take from api")
+        print("Take from api") # Borrar
         word = str
         status_get = int
         if category == "animales":
@@ -69,8 +70,8 @@ class Words:
                 status_get = response.status_code
                 body = response.json()['body']
                 word = body['name']
-                print(body)
+                print(body)  # borrar
             except KeyError:
                 print(f"Error: Request fail {status_get}")
-                traceback.print_exc()
+                traceback.print_exc() # Borrar 
         return word

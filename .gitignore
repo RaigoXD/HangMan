@@ -4,3 +4,5 @@ venv
 
 #ignore the python cache 
 __pycache__
+
+experimentos.py

@@ -1,9 +1,10 @@
 """
-    Project HangMam
+    All configuration for the Hangman game
 """
 
 import json
 import os
+from hang_man import hang_mang_start
 
 FILE_PATH=os.path.dirname(__file__)
 
@@ -20,11 +21,21 @@ CONFIGMENU = """Change configurations for HangMam Game
     2 - Method for get the random words
     3 - Exit
         """
+CATEGORIESLOCAL = """Select a category:
+    1 - Animals
+    2 - Feelings
+    3 - Countries
+    4 - Food 
+"""
+
+CATEGORIESAPI = """Select a category:
+    1 - Animals
+"""
 
 
 def print_message(message : str):
     """
-    Error message
+    print the message and wait for press any key
     """
     print(f"{message}\nPress Enter key to continue")
     input()
@@ -46,7 +57,7 @@ def get_option():
 
 def read_config_file() -> dict:
     """
-    read the config from file
+    Read the config from file
     """
     try:
         with open(f"{FILE_PATH}/config.json", "r", encoding="utf-8") as file:
@@ -59,7 +70,7 @@ def read_config_file() -> dict:
 
 def build_config():
     """
-    Build the initial configuration for the HangMam Game from config.json
+    Build the initial configuration for the HangMan Game from config.json
     """
     try:
         initial_config = read_config_file()
@@ -89,7 +100,8 @@ def save_config_to_file(new_lang: str, new_source: str):
 
 def change_config(language : str, method_get_words : str):
     """
-    Make a new configurations for the game.
+    show the options to change the configurations,
+    and make a new ones for the game selected by user
     """
     new_lang = language
     new_source = method_get_words
@@ -128,6 +140,67 @@ def change_config(language : str, method_get_words : str):
     save_config_to_file(new_lang,new_source) # Save the news arguments
     return new_source,new_lang
 
+
+
+def category_local():
+    """
+    Categories to play with the local data
+    """
+    category = str
+    while True:
+        os.system("clear") # Clean the screen
+        print(CATEGORIESLOCAL)
+        print("-> ",end="")
+        option = get_option()
+        if option == 1:
+            category = "animales"
+            break
+        elif option == 2:
+            category = "sentimientos"
+            break
+        elif option == 3:
+            category = "paises"
+            break
+        elif option == 4:
+            category = "comida"
+            break
+        else:
+            print_message("Please enter a valid option")
+
+    return category
+
+def category_api():
+    """
+    Categories to play with the API for random words
+    """
+    category = str
+    while True:
+        os.system("clear") # Clean the screen
+        print(CATEGORIESAPI)
+        print("-> ",end="")
+        option = get_option()
+        if option == 1:
+            category = "animales"
+            break
+        else:
+            print_message("Please enter a valid option")
+
+    return category
+
+
+def game_config(lang: str, method_get_words:str):
+    """
+    config the game before start to play
+    """
+    category = str
+    if method_get_words == "local":
+        category = category_local()
+    else:
+        category = category_api()
+
+    print_message(category) # Borrar
+    hang_mang_start(lang, method_get_words, category)
+
 def hang_man():
     """
     Main funtion for HangMan game
@@ -142,7 +215,7 @@ def hang_man():
         print(MAINMENU)
         option = get_option()
         if option == 1:
-            pass
+            game_config(lang,method_get_words)
         elif option == 2:
             method_get_words,lang = change_config(lang,method_get_words)
         elif option == 3:
