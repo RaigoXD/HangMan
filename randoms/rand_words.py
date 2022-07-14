@@ -3,8 +3,8 @@ Module for generate a random word
 """
 import random
 import json as js # using to read the local data base
-import traceback# Borrar
 import requests # using to read the random words from api
+
 
 class Words:
     """
@@ -41,18 +41,15 @@ class Words:
         return a random word with context by a category using the local data
         base
         """
-        print("Take from local") # Borrar
         word = str
         try:
             with open("local_data.json", "r", encoding="utf-8") as data_base:
                 data = js.load(data_base)
                 words = data[self.language][category]
-                print(f"palabras para animales {words}")
                 rand_index = random.randint(0,len(words)-1)
                 word = words[rand_index]
         except (KeyError, ValueError,FileNotFoundError, IndexError):
             print("Error: Something was wrong in import the data base ")
-            traceback.print_exc() # Borrar
         return word
 
 
@@ -61,7 +58,7 @@ class Words:
         return a random word with context gave by a category using the
         API for random words
         """
-        print("Take from api") # Borrar
+        print("Taking from api...")
         word = str
         status_get = int
         if category == "animales":
@@ -70,8 +67,6 @@ class Words:
                 status_get = response.status_code
                 body = response.json()['body']
                 word = body['name']
-                print(body)  # borrar
             except KeyError:
                 print(f"Error: Request fail {status_get}")
-                traceback.print_exc() # Borrar 
         return word

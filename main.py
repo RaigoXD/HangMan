@@ -6,38 +6,76 @@ import json
 import os
 from hang_man import hang_mang_start
 
+
+# Constants for configs
+
 FILE_PATH=os.path.dirname(__file__)
+CLEANSCREEN = "clear"  # change it to "cls" if you are on windows
 
-MAINMENU = """HangMan Game by Jhoan Raigoza
-    -> Menu
-    1 - Play
-    2 - Config
-    3 - show actual config
-    4 - exit 
-        """
 
-CONFIGMENU = """Change configurations for HangMam Game
-    1 - Change languages
-    2 - Method for get the random words
-    3 - Exit
-        """
-CATEGORIESLOCAL = """Select a category:
-    1 - Animals
-    2 - Feelings
-    3 - Countries
-    4 - Food 
+# text to show on screen
+
+TITLEHANGMAN ="""
+ ██░ ██  ▄▄▄       ███▄    █   ▄████  ███▄ ▄███▓ ▄▄▄       ███▄    █ 
+▓██░ ██▒▒████▄     ██ ▀█   █  ██▒ ▀█▒▓██▒▀█▀ ██▒▒████▄     ██ ▀█   █ 
+▒██▀▀██░▒██  ▀█▄  ▓██  ▀█ ██▒▒██░▄▄▄░▓██    ▓██░▒██  ▀█▄  ▓██  ▀█ ██▒
+░▓█ ░██ ░██▄▄▄▄██ ▓██▒  ▐▌██▒░▓█  ██▓▒██    ▒██ ░██▄▄▄▄██ ▓██▒  ▐▌██▒
+░▓█▒░██▓ ▓█   ▓██▒▒██░   ▓██░░▒▓███▀▒▒██▒   ░██▒ ▓█   ▓██▒▒██░   ▓██░
+ ▒ ░░▒░▒ ▒▒   ▓▒█░░ ▒░   ▒ ▒  ░▒   ▒ ░ ▒░   ░  ░ ▒▒   ▓▒█░░ ▒░   ▒ ▒ 
+ ▒ ░▒░ ░  ▒   ▒▒ ░░ ░░   ░ ▒░  ░   ░ ░  ░      ░  ▒   ▒▒ ░░ ░░   ░ ▒░
+ ░  ░░ ░  ░   ▒      ░   ░ ░ ░ ░   ░ ░      ░     ░   ▒      ░   ░ ░ 
+ ░  ░  ░      ░  ░         ░       ░        ░         ░  ░         ░ 
+                        by Jhoan Raigoza                                                                   
 """
 
-CATEGORIESAPI = """Select a category:
-    1 - Animals
+MAINMENU = """                      -> Menu
+                            1 - Play
+                            2 - Config
+                            3 - show actual config
+                            4 - exit 
+        """
+
+CONFIGMENU = """                    Change configurations for HangMam Game
+                        1 - Change languages
+                        2 - Method for get the random words
+                        3 - Exit
+        """
+CATEGORIESLOCAL = """                   Select a category:
+                        1 - Animals
+                        2 - Feelings
+                        3 - Countries
+                        4 - Food 
 """
+
+CATEGORIESAPI = """                     Select a category:
+                        1 - Animals
+"""
+
+MENULANG = """                  Please select the language:
+                        1 - Spanish
+                        2 - English
+"""
+
+MENUDATA = """              Please select the method for randoms words :
+                        1 - Local Data Base
+                        2 - API for random words
+"""
+
+def print_menus(menu):
+    """
+    Print the menu selected with the hangman title
+    """
+    os.system(CLEANSCREEN)
+    print(TITLEHANGMAN)
+    print(menu)
+    print("--------------------------------------------------------------------------\n", end="")
 
 
 def print_message(message : str):
     """
     print the message and wait for press any key
     """
-    print(f"{message}\nPress Enter key to continue")
+    print(f"{message}\nPress Enter key to continue", end="")
     input()
 
 
@@ -47,7 +85,7 @@ def get_option():
     """
     option = int
     try:
-        option = int(input())
+        option = int(input("==> "))
         return option
     except ValueError:
         print_message("Please enter a number")
@@ -65,7 +103,7 @@ def read_config_file() -> dict:
             file.close()
             return data_config
     except FileNotFoundError:
-        print_message("Error:Something was wrong with the file config.json")
+        print_message("Error:The file config.json does not exist")
 
 
 def build_config():
@@ -76,10 +114,9 @@ def build_config():
         initial_config = read_config_file()
         source = initial_config['source']
         language = initial_config['languages']
-        print("All do it successfully in config") # borrar
         return source, language
     except KeyError:
-        print_message("Error:Something was wrong with the file config.json")
+        print_message("Error:The config.json has something wrong taking default configurations")
         return "sp", "local" # Default if something was wrong
 
 
@@ -95,7 +132,7 @@ def save_config_to_file(new_lang: str, new_source: str):
             json.dump(new_config,file)
             file.close()
     except KeyError:
-        print_message("Error:Something was wrong with the file config.json")
+        print_message("Error:The config.json has something wrong")
 
 
 def change_config(language : str, method_get_words : str):
@@ -107,12 +144,11 @@ def change_config(language : str, method_get_words : str):
     new_source = method_get_words
 
     while True:
-        os.system("clear") # clean the screen
-        print(CONFIGMENU)
+        print_menus(CONFIGMENU)
         option = get_option()
+
         if option == 1:
-            os.system("clear") # Clean the screen
-            print("Please select the language:\n\t1 - Spanish\n\t2 - English\n->", end="")
+            print_menus(MENULANG)
             option = get_option()
             if option == 1:
                 new_lang = "sp"
@@ -121,9 +157,9 @@ def change_config(language : str, method_get_words : str):
                 new_source = "local"
             else:
                 print_message("Please enter a valid option")
+
         elif option == 2:
-            os.system("clear") # Clean the screen
-            print("Please select the method for randoms words :\n\t1 - Local Data Base\n\t2 - API for random words\n->", end="")
+            print_menus(MENUDATA)
             option = get_option()
             if option == 1:
                 new_source = "local"
@@ -132,6 +168,7 @@ def change_config(language : str, method_get_words : str):
                 new_lang = "sp"
             else:
                 print_message("Please enter a valid option")
+
         elif option == 3:
             break
         else:
@@ -148,9 +185,7 @@ def category_local():
     """
     category = str
     while True:
-        os.system("clear") # Clean the screen
-        print(CATEGORIESLOCAL)
-        print("-> ",end="")
+        print_menus(CATEGORIESLOCAL)
         option = get_option()
         if option == 1:
             category = "animales"
@@ -175,9 +210,7 @@ def category_api():
     """
     category = str
     while True:
-        os.system("clear") # Clean the screen
-        print(CATEGORIESAPI)
-        print("-> ",end="")
+        print_menus(CATEGORIESAPI)
         option = get_option()
         if option == 1:
             category = "animales"
@@ -198,30 +231,28 @@ def game_config(lang: str, method_get_words:str):
     else:
         category = category_api()
 
-    print_message(category) # Borrar
-    hang_mang_start(lang, method_get_words, category)
+    return hang_mang_start(lang, method_get_words, category)
 
-def hang_man():
+def main():
     """
     Main funtion for HangMan game
     """
     method_get_words,lang = build_config()
 
-    print(f"lang: {lang}") # Borrar
-    print(f"source {method_get_words}") #Borrar
-
     while True:
-        os.system("clear") # clean the screen
-        print(MAINMENU)
+        print_menus(MAINMENU)
         option = get_option()
+
         if option == 1:
-            game_config(lang,method_get_words)
+            if game_config(lang,method_get_words) is False:
+                break
         elif option == 2:
             method_get_words,lang = change_config(lang,method_get_words)
         elif option == 3:
-            os.system("clear")
-            print("Actual configuration is:")
-            print(f"\tLanguages = {lang} \n\tSource of the randoms words: {method_get_words}")
+            os.system(CLEANSCREEN)
+            print(TITLEHANGMAN)
+            print("\t\tActual configuration is:")
+            print(f"\t\tLanguages = {lang} \n\t\tSource of the randoms words: {method_get_words}")
             print_message("")
         elif option == 4:
             break
@@ -230,4 +261,4 @@ def hang_man():
 
 
 if __name__ == '__main__':
-    hang_man()
+    main()

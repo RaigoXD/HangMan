@@ -8,7 +8,7 @@
     "sp":{
         "animales":["leon", "conejo", "leopardo", "oso"],
         "sentimientos":["miedo", "ira", "alegria", "tristeza"],
-        "Paises":["colombia", "españa","brazil", "rusia"],
+        "paises":["colombia", "japon","brazil", "rusia"],
         "comida":["arroz", "pizza", "papas fritas", "huevo"]
     }
 }
