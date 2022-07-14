@@ -1,0 +1,14 @@
+{
+    "en":{
+        "animales":["lion", "rabbit", "leopard", "bear"],
+        "sentimientos":["fear", "anger", "happiness", "sadness"],
+        "paises":["colombia", "spain","brazil", "russia"],
+        "comida":["rice", "pizza", "potato chips", "egg"]
+    },
+    "sp":{
+        "animales":["leon", "conejo", "leopardo", "oso"],
+        "sentimientos":["miedo", "ira", "alegria", "tristeza"],
+        "paises":["colombia", "japon","brazil", "rusia"],
+        "comida":["arroz", "pizza", "papas fritas", "huevo"]
+    }
+}
