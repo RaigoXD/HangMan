@@ -26,13 +26,18 @@ pip install -r requierements.txt
 # PRESENTATION
 
 
-The idea for this project was learn more about ApiRest, Json and Python to improve my skills in those subjects, this is a simple HangMan Game, it had a 4 categories to play in spanish or english if you select the option to play on local, those are: Animals, Fellings, Countries, Food. if you play with API, you only could play in spanish and with just one category by the moment Animals. 
+The idea for this project was learn more about ApiRest, Json and Python to improve my skills in those subjects, this is a simple HangMan Game, it has 4 categories to play in spanish or english if you select the option to play on local, those are: Animals, Fellings, Countries, Food. If you select API, you only could play in spanish and with just one category by the moment which is Animals.
 
-
-The project has a lof to improve, any suggestion is welcome
+The project has a lot to improve, any suggestion is welcome
 
 
 > note: if you dont have internet connection not select the API mode it will crash
+
+## API used 
+
+I used a API for random words, this API is for public use, i leave the link below
+
+http://palabras-aleatorias-public-api.herokuapp.com/
 
 
 # How to Start? 
@@ -51,7 +56,7 @@ It will show next menu:
   <img src="https://user-images.githubusercontent.com/66691963/179068751-471bcfc6-618e-425a-a452-bd8b07fb5b30.png">
 </p>
 
-There you could show the configurations, make a new ones and start to play
+There you could look the configurations, make a new ones and start to play
 and ready you are in the game, PLAY!!!!
 
 # ME
