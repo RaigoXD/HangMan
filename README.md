@@ -56,7 +56,7 @@ and ready you are in the game, PLAY!!!!
 
 # ME
 
-<img align="left" width="200" height="200" src="https://avatars.githubusercontent.com/u/66691963?s=96&v=4">
+<img align="left" width="200" height="200" src="https://avatars.githubusercontent.com/u/66691963?v=4">
 
 @RaigoXD
 
