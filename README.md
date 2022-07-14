@@ -62,6 +62,6 @@ and ready you are in the game, PLAY!!!!
 
 Jhoan Esteban Raigoza Agudelo
 
-Linkeid: https://www.linkedin.com/in/jhoan-raigoza-07290823b/
+Linkedin: https://www.linkedin.com/in/jhoan-raigoza-07290823b/
 
 Software Engineering student 
