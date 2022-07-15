@@ -16,7 +16,7 @@ This project is a HangMan Game where if you want you could play with the local d
 > note: you should've python 3 and pip installed
 
 
-you have to install all the dependencies in requierements.txt
+you have to install all the dependencies in requierements.txt  
 
 ```sh
 pip install -r requierements.txt
