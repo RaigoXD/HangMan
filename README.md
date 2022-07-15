@@ -8,7 +8,7 @@
 [![request](http://badgen.net/badge/request/2.28.1/green)](https://pypi.org/project/requests/)
 
 
-This project is a HangMan Game where if you want you could play with the local database or with API, it had a big database of words.
+This project is a HangMan Game where if you want you could play with the local database or with API, it has a big database of words.
 
 ## INSTALLATION
 
