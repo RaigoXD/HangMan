@@ -13,7 +13,7 @@ WINMESSAGE = """
                //                    ╩ ╚═╝╚═╝  ╚╩╝╩╝╚╝
              _//    __              
             (_|)   |@@|             FINALLY 
-             \ \__ \--/ __          YOU SAVE THE WORD
+             \ \__ \--/ __          YOU SAVE THE WORLD
               \o__|----|  |   __    
                   \ }{ /\ )_ / _/   GitHub: @RaigoXD
                   /\__/\ \__O (__   
