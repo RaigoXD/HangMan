@@ -39,6 +39,7 @@ I used a API for random words, this API is for public use, i leave the link belo
 
 http://palabras-aleatorias-public-api.herokuapp.com/
 
+this function is not enabled because the API is disabled
 
 # How to Start? 
 
